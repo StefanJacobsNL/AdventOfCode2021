@@ -34,4 +34,41 @@ while(count<stringLength):
 answerPart1 = int(gamma, 2) * int(epsilon, 2)
 
 print("The answer is of part one is: " + str(answerPart1))
+
+# part 2
+
+count = 0
+oxygenList = content_list
+co2List = content_list
+oxygenAnswer = ""
+co2Answer = ""
+
+maxListCount = len(oxygenList[0])
+
+while(count < maxListCount):
+    if len(oxygenList) > 1:
+        zeroCount = len([x for x in oxygenList if x[count] == "0"])
+        oneCount = len([x for x in oxygenList if x[count] == "1"])
+
+        if zeroCount > oneCount:
+            oxygenList = [x for x in oxygenList if x[count] == "0"]
+        elif oneCount > zeroCount:
+            oxygenList = [x for x in oxygenList if x[count] == "1"]
+        elif oneCount ==  zeroCount:
+            oxygenList = [x for x in oxygenList if x[count] == "1"]
+
+    if len(co2List) > 1:
+        zeroCountCo2 = len([x for x in co2List if x[count] == "0"])
+        oneCountCo2 = len([x for x in co2List if x[count] == "1"])
+        if zeroCountCo2 < oneCountCo2:
+            co2List = [x for x in co2List if x[count] == "0"]
+        elif oneCountCo2 < zeroCountCo2:
+            co2List = [x for x in co2List if x[count] == "1"]
+        elif oneCountCo2 == zeroCountCo2:
+            co2List = [x for x in co2List if x[count] == "0"]
+
+    count +=1 
+
+answerPart2 = int(oxygenList[0], 2) * int(co2List[0], 2)
+
 print("The answer is of part two is: " + str(answerPart2))
