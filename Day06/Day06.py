@@ -1,6 +1,6 @@
-answerPart1 = 0
+answerPart = 0
 answerPart2 = 0
-maxDays = 80
+maxDays = 256
 counter = 0
 faseZero = 0
 fishDictCounter = 0
@@ -47,8 +47,7 @@ while counter < maxDays:
 
 counter = 0
 for fish in fishDict:
-    answerPart1 += fishDict[counter]
+    answerPart += fishDict[counter]
     counter += 1
 
-print("The answer is of part one is  " + str(answerPart1))
-print("The answer is of part two is  " + str(answerPart2))
+print("The answer is " + str(answerPart))
