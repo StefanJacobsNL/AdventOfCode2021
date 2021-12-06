@@ -46,8 +46,6 @@ while counter < maxDays:
     faseZero = 0
 
 counter = 0
-for fish in fishDict:
-    answerPart += fishDict[counter]
-    counter += 1
+answerPart = sum(fishDict.values())
 
 print("The answer is " + str(answerPart))
