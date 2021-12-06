@@ -1,6 +1,4 @@
-answerPart1 = 0
-answerPart2 = 0
-previousInput = 0
+answer = 0
 counter = 2
 cardCounter = 1
 rowCounter = 1
@@ -10,6 +8,7 @@ currentColumn = 0
 found = False
 answerCard = ""
 lastBingo = 0
+doneCards = list();
 
 # read file and convert to string list
 with open('input.txt') as f:
@@ -57,10 +56,13 @@ for bingoNumber in bingoNumbers:
         while currentRow < 6:
             # checks the rows
             if globals()[f"card{currentCard}Row{currentRow}"].count("x") == 5:
-                found = True
-                answerCard = currentCard
-                lastBingo = bingoNumber
-                break
+                if(doneCards.count(currentCard) == 0):
+                    doneCards.append(currentCard)
+                    answerCard = currentCard
+                    lastBingo = bingoNumber
+                    if(cardCounter == len(doneCards)):
+                        found = True
+                        break
             
             currentRow += 1
 
@@ -70,10 +72,14 @@ for bingoNumber in bingoNumbers:
                     globals()[f"card{currentCard}Row{3}"][currentColumn] == "x" and
                     globals()[f"card{currentCard}Row{4}"][currentColumn] == "x" and
                     globals()[f"card{currentCard}Row{5}"][currentColumn] == "x"):
-                found = True
-                answerCard = currentCard
-                lastBingo = bingoNumber
-                break
+                if(doneCards.count(currentCard) == 0):
+                    doneCards.append(currentCard)
+                    answerCard = currentCard
+                    lastBingo = bingoNumber
+                    if(cardCounter == len(doneCards)):
+                        found = True
+                        break
+
             currentColumn += 1
 
         if found == True:
@@ -95,9 +101,8 @@ counter = 1
 
 while counter < 6:
     tesst = [e for e in globals()[f"card{answerCard}Row{counter}"] if isinstance(e, int)]
-    answerPart1 += sum(tesst)
+    answer += sum(tesst)
     counter += 1
 
-answerPart1 = answerPart1 * lastBingo
-print("The answer is of part one is  " + str(answerPart1))
-print("The answer is of part two is  " + str(answerPart2))
+answer = answer * lastBingo
+print("The answer is " + str(answer))
